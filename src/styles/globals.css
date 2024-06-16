@@ -1,0 +1,344 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 235, 14%, 15%;
+    --foreground: 60 9.1% 97.8%;
+    --card: 231, 15%, 18%;
+    --card-foreground: 60 9.1% 97.8%;
+    --popover: 20 14.3% 4.1%;
+    --popover-foreground: 60 9.1% 97.8%;
+    --primary: 20.5 90.2% 48.2%;
+    --primary-foreground: 60 9.1% 97.8%;
+    --secondary: 12 6.5% 15.1%;
+    --secondary-foreground: 60 9.1% 97.8%;
+    --muted: 12 6.5% 15.1%;
+    --muted-foreground: 24 5.4% 63.9%;
+    --accent: 12 6.5% 15.1%;
+    --accent-foreground: 60 9.1% 97.8%;
+    --destructive: 0 72.2% 50.6%;
+    --destructive-foreground: 60 9.1% 97.8%;
+    --border: 0, 0%, 30%;
+    --input: 12 6.5% 15.1%;
+    --ring: 20.5 90.2% 48.2%;
+    --radius: 1rem;
+    --hc: #9bdbee;
+    --orange: #ffb300;
+    --purple: #bd93f9;
+    --purple-hover: #bf93f980;
+    --cyan: #8be9fd;
+    --cyan-hover: #8be9fd80;
+    --pink: #ff79c6;
+    --pink-hover: #ff79c680;
+    --white: #f8f8f2;
+    --white-hover: #f8f8f280;
+    --red: #ff5555;
+    --yellow: #f1fa8c;
+    --green: #50fa7b;
+    --current-line: #44475a;
+
+    --font-family-base: 
+    'noto-serif',
+    'FutureMono',
+    ui-monospace,
+    'Chinese Quotes', 'Inter var', 'Inter', ui-sans-serif,
+      system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+      'Helvetica Neue', Helvetica, Arial, 'Noto Sans', sans-serif,
+      'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+      --font-family-mono: 
+    'FutureMono',
+    ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Monaco,
+      Consolas, 'Liberation Mono', 'Courier New','noto-serif', monospace;
+    /* --font-family-mono:  'zpix', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Monaco,
+      Consolas, 'Liberation Mono', 'Courier New', monospace; */
+    --bgc-light: #333338;
+    --bgc: #282a35;
+    --fontc: #fdfff2;
+    --accent-dark: #ff7700;
+    --black: 15, 18, 25;
+    --gray: #8585a8;
+    --gray-light: #9898c0;
+    --gray-dark: 34, 41, 57;
+    --gray-gradient: rgba(var(--gray-light), 50%), #fff;
+    --box-shadow: 0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%),
+      0 16px 32px rgba(var(--gray), 33%);
+  }
+}
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes enter {
+  0% {
+      opacity: 0;
+      /* transform: translateY(-30px) */
+  }
+
+  to {
+      opacity: 1;
+      transform: none;
+  }
+}
+
+@keyframes blurOut {
+  from {
+      filter: blur(20px);
+  }
+
+  to {
+      filter: blur(0px);
+  }
+}
+
+[data-animate-enter] {
+  --stagger: 0;
+  --delay: 1000ms;
+  --start: 500ms;
+  animation: enter var(--delay) ease-in-out, blurOut var(--delay) ease-in-out;
+  animation-fill-mode: both;
+  animation-delay: var(--start);
+}
+
+/* Add this to your CSS file (e.g., styles.css) */
+.timezone-text {
+  font-family: "Lobster", Times, "Times New Roman", serif;
+  font-size: 48px;
+  text-align: center;
+}
+@font-face {
+	font-family: 'zpix';
+	src: url('/fonts/VonwaonBitmap-16px.woff2') format('woff');
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'FutureMono';
+	src: url('/fonts/FutureMono.woff2') format('woff');
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'noto-serif';
+	src: url('/fonts/noto-serif.woff2') format('woff');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+body {
+	font-family: var(--font-family-base);
+	margin: 0;
+	padding: 0;
+	text-align: left;
+	background-color: var(--bgc);
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	color: var(--fontc);
+	font-size: 15px;
+	letter-spacing: 0.7px;
+	position: relative;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+background-size: 100%;
+/* background-image: url('bg.webp'); */
+  /* 添加模糊效果 */
+  filter: blur(5px);
+  /* 将遮罩层放置在背景图片前面 */
+  z-index: -1;
+min-height: 100vh;
+}
+::selection {
+  /* background-color: ;  */
+  color: var(--accent-dark); /* 修改选中文字的前景（文字）颜色 */
+}
+
+main {
+	width: 720px;
+	max-width: calc(100% - 2em);
+	margin: auto;
+	padding: 0em 1em;
+	/* padding-top: 10vh; */
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--font-family-base);
+	margin: 1rem 0 1rem 0;
+	color: var(--fontc);
+	line-height: 1.5;
+}
+h1 {
+	font-size: 3em;
+}
+h2 {
+	font-size: 1.6em;
+}
+h3 {
+	font-size: 1.4em;
+}
+h4 {
+	font-size: 1.3em;
+}
+h5 {
+	font-size: 1.2em;
+}
+.headline h1 {
+  font-size: 2em;
+  position: relative;
+  padding-left: 0rem; /* 可以调整以适应你的布局 */
+}
+
+.headline h1::before{
+  content: '#';
+  margin-right: 1.2rem;
+  color: var(--orange); /* 可根据需要调整颜色 */
+}
+.headline h2 {
+  position: relative;
+  padding-left: 0rem; /* 可以调整以适应你的布局 */
+}
+
+.headline h2::before{
+  content: '●';
+  margin-right: 1.2rem;
+  color: var(--orange); /* 可根据需要调整颜色 */
+}
+.headline p {
+  text-indent: 2em; /* 段前空两格 */
+  line-height: 2; /* 行间距为1.5倍 */
+  font-size: 12pt; /* 文字大小为小四 */
+}
+.headline a {
+  color: var(--hc);
+  text-decoration: none;
+  transition: 0.2s ease;
+  font-family: var(--font-family-mono)
+}
+.headline a:hover {
+  transition: 0.2s ease;
+  color: var(--orange);
+  text-decoration: underline;
+  text-decoration-style: dashed; /* 设置下划线为虚线 */
+}
+
+.headline blockquote {
+	border-left: 10px solid hsl(var(--primary));
+	padding:0.1rem 1rem;
+	margin: 1rem 0 0 0;
+	background-color: #00000030;
+	border-radius: 10px;
+}
+
+strong,
+b {
+	font-weight: 700;
+}
+p {
+	margin-bottom: 1em;
+	transition: 0.2s ease;
+  margin: 1em 0; /* 设置段落的上下间距，使段落之间有一定间距 */
+}
+p img {
+	margin: 2rem auto;
+	max-height: 600px;
+	display: block;
+	border-radius: 10px;
+}
+
+hr {
+	border-color: #00000000;
+	margin: 0.5rem;
+}
+code  {
+	background-color: #00000030;
+	margin-right: 3px;
+	font-family: var(--font-family-mono);
+	color: var(--orange);
+}
+.expressive-code {
+	border: var(--hc) solid 1px;
+	transition: .5s all;
+	border-radius: 10px;
+	box-shadow: 0px 0px 30px 1px rgba(150, 222, 255, 0.303);
+}
+.expressive-code:hover {
+	border: var(--orange) solid 1px;
+	border-radius: 10px;
+	box-shadow: 0px 0px 30px 1px rgba(255, 179, 0, 0.303);
+	transition: .5s all;
+}
+pre {
+	padding: 1.5em;
+	border-radius: 8px;
+	background-color: #00000030!important;
+	transition: all .5s;
+	border: var(--hc) solid 1px;
+	line-height: 1.5;
+}
+pre > code {
+	font-family: var(--font-family-mono);
+	font-size: 0.8rem;
+	background-color: #00000000;
+	color: var(--fontc);
+	white-space: pre-wrap;
+}
+pre:hover {
+	transition: all .5s;
+	border: var(--orange) solid 1px;
+  box-shadow: 0px 0px 30px 1px rgba(243, 222, 58, 0.303);
+}
+
+/* 滚动条整体样式 */
+::-webkit-scrollbar {
+	width: 7px; /* 滚动条宽度 */
+  }
+  
+  /* 滚动条轨道样式 */
+  ::-webkit-scrollbar-track {
+	background: var(--bgc); /* 轨道背景色 */
+  }
+  
+  /* 滚动条滑块样式 */
+  ::-webkit-scrollbar-thumb {
+	background: var(--hc); /* 滑块颜色 */
+	border-radius: 10px; /* 滑块边角 */
+  }
+  
+  /* 滚动条鼠标悬停样式 */
+  ::-webkit-scrollbar-thumb:hover {
+	background: hsl(var(--primary)); /* 鼠标悬停时的滑块颜色 */
+  }

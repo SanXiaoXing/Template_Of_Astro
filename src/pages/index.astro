@@ -1,0 +1,144 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import IntroCard from '../components/sections/IntroCard.astro'
+import AboutMe from '../components/sections/AboutMe.astro'
+import Card from '../components/Card.astro'
+import TimeZoneCard from '../components/sections/TimeZoneCard.astro'
+import Now from '../components/sections/Now.astro'
+import ExperienceCard from '../components/sections/ExperienceCard.astro'
+import StudyCard from '../components/sections/StudyCard.astro'
+import CardLink from '../components/Card_link.astro'
+---
+
+<BaseLayout
+  title="SanXiaoXing"
+  description="SanXiaoXing - Happy everyday"
+>
+<div
+  slot="loader"
+  class="loader bg-darkslate-700 text-neutral-50 text-3xl font-black uppercase flex justify-center items-center w-screen h-screen z-50 fixed top-0 bottom-0 right-0 left-0"
+  >
+  </div>
+  <main
+  class="text-white m-auto p-2 grid gap-2 max-w-6xl overflow-hidden relative w-full sm:p-4 sm:gap-2 md:grid-cols-2 md:gap-3 md:p-6 lg:h-screen lg:grid-rows-7 lg:grid-cols-4 lg:gap-4 lg:max-h-[800px]"
+  data-animate-enter
+>
+    <IntroCard />
+    <AboutMe />
+    <ExperienceCard />
+    <Now />
+    <StudyCard /> 
+
+    <CardLink 
+      href='/blog'
+      colSpan="md:col-span-1" rowSpan="md:row-span-1">
+        <div class="text-4xl">Blog</div>
+    </CardLink>
+
+    <Card colSpan="md:col-span-1" rowSpan="md:row-span-2">
+      <div id="show" class="flex h-full flex-col justify-between">
+        <blockquote class="mt-6 border-l-2 pl-6 italic">
+          “Anything one man can imagine, other men can make real.”
+        </blockquote> 
+        <p class="mt-2 text-xs">- Jules Verne</p>
+      </div>
+    </Card>
+    <TimeZoneCard />
+
+    <CardLink 
+      href='/tags'
+      colSpan="md:col-span-1" rowSpan="md:row-span-1">
+        <div class="text-4xl">Tags</div>
+    </CardLink>
+
+    <Card colSpan="md:col-span-1" rowSpan="md:row-span-1">
+      <div style={{ justifyContent: 'center', alignItems: 'center', display: 'flex', width: '100%', height: '100%' }}>
+        <div class="text-xs">
+          © 2023 - 2024 · Crafted with ♥️ using <a
+            href="https://astro.build/"
+            target="_blank"
+            class="text-red-500">Astro</a
+          > by <a
+          href="https://github.com/SanXiaoXing"
+          target="_blank"
+          class="text-red-500">SanXiaoXing</a
+          >.
+        </div>
+      </div>
+    </Card>
+  </main>
+</BaseLayout>
+
+<script is:inline>
+  import { stagger, spring, timeline } from 'motion';
+  import { loaderAnimation } from '../lib/constants';
+
+  function initializeAnimation() {
+    const cards = document.querySelectorAll('.card-animate');
+
+    const sequence = [
+      loaderAnimation,
+      [
+        cards,
+        { y: ['40%', '0%'], opacity: [0, 1] },
+        {
+          at: '-0.1',
+          duration: 0.4,
+          delay: stagger(0.3),
+          easing: spring({ velocity: 100, stiffness: 50, damping: 10 }),
+        },
+      ],
+    ];
+
+    timeline(sequence);
+  }
+
+  if (typeof window !== 'undefined') {
+    initializeAnimation();
+  }
+</script>
+
+<script src="https://sf-cdn.coze.com/obj/unpkg-va/flow-platform/chat-app-sdk/0.1.0-beta.2/libs/oversea/index.js" is:inline></script>
+<script is:inline>
+  if (typeof window !== 'undefined') {
+    new CozeWebSDK.WebChatClient({
+      config: {
+        bot_id: '7320231897681035270',
+      },
+      componentProps: {
+        title: 'Coze',
+      },
+    });
+  }
+</script>
+
+<style>
+  #show {
+      position: relative; /* 让伪元素可以绝对定位 */
+      overflow: hidden; 
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      flex-direction: column;
+      box-sizing: border-box; /* 确保内边距不会影响元素的总大小 */
+  }
+
+  /* 伪元素样式 */
+  #show::before {
+      content: '';
+      background-image: url('/favicon_bg.svg');
+      background-size: cover;
+      background-position: center;
+      opacity: 0; /* 初始不透明 */
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transition: opacity 0.5s ease; /* 添加过渡效果 */
+  }
+
+  #show:hover::before {
+      opacity: 0.2; /* 鼠标悬停时透明度变为 0.2，显示一点点 */
+  }
+</style>
