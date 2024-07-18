@@ -1,19 +1,20 @@
 <div align="center">
   <img alt="logo" src="https://blog.sanxiaoxing.cn/favicon.svg" width="200" />
 </div>
-Astro SanXiaoXing是一个卡片式的博客网站，简易、轻量、高效
+Astro SanXiaoXing是一个卡片式的博客网站，简易、轻量、高效。
 
 ## 更换语言
 
-<span>
-    <a href="README.md">
-        <img src="https://cdn.jsdelivr.net/gh/SanXiaoXing/Image@main/blog/Chinese.svg" alt="Chinese" width="80" height="40" style="vertical-align: middle;">
-    </a>
-    <a href="README_EN.md">
-        <img src="https://cdn.jsdelivr.net/gh/SanXiaoXing/Image@main/blog/English.svg" alt="English" width="80" height="40" style="vertical-align: middle;">
-    </a>
-</span>
-
+<div style="text-align: center;">
+    <span class="center">
+        <a href="README.md">
+            <img src="https://cdn.jsdelivr.net/gh/SanXiaoXing/Image@main/blog/Chinese.svg" alt="Chinese" width="80" height="40" style="vertical-align: middle;">
+        </a>
+        <a href="README_EN.md">
+            <img src="https://cdn.jsdelivr.net/gh/SanXiaoXing/Image@main/blog/English.svg" alt="English" width="80" height="40" style="vertical-align: middle;">
+        </a>
+    </span>
+</div>
 # 目录
 1. [主要特点](#主要特点)
 
